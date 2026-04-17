@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  overscroll-behavior: none;
+}
+
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
