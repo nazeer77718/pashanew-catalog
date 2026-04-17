@@ -1,7 +1,20 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-  base: "/", // VERY IMPORTANT for Netlify
-})
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  safelist: [
+    "bg-blue-100",
+    "bg-green-100",
+    "bg-yellow-100",
+    "bg-red-100",
+    "bg-pink-100",
+    "bg-purple-100",
+    "bg-orange-100",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
