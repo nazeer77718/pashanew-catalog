@@ -7,10 +7,12 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:id" element={<Category />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:slug" element={<Category />} />
+        </Routes>
+      </main>
     </Router>
   );
 }

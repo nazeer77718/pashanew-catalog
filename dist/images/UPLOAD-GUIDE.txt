@@ -1,0 +1,21 @@
+PASHA ENGINEERING WORKS — IMAGE UPLOAD GUIDE
+============================================
+
+Add your design photos to these folders (JPG, PNG, or WEBP):
+
+  public/images/gates/      → Main Gates
+  public/images/bathroom/   → Bathroom Doors
+  public/images/autobody/   → Auto Body Works
+  public/images/others/     → Other Designs
+
+Hero image (homepage banner):
+  public/images/hero.jpg
+
+After adding or removing photos:
+  1. Run:  npm run images
+  2. Restart dev server (or rebuild for Netlify)
+
+Tips for Netlify:
+  - Use lowercase filenames (e.g. gate-design-01.jpg)
+  - Avoid spaces in filenames
+  - No need to edit React code — the site reads folders automatically

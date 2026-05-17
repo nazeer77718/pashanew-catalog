@@ -1,25 +1,44 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams, Navigate } from 'react-router-dom';
 import ImageGrid from '../components/ImageGrid';
-import categories from '../data/data';
+import Footer from '../components/Footer';
+import { getCategoryBySlug, getCategoryImagePaths } from '../data/categories';
+
+const LEGACY_SLUGS = {
+  '1': 'gates',
+  '2': 'bathroom',
+  '3': 'autobody',
+  '4': 'others',
+};
 
 const Category = () => {
-  const { id } = useParams();
-  const category = categories.find(cat => cat.id === parseInt(id));
+  const { slug } = useParams();
+
+  if (LEGACY_SLUGS[slug]) {
+    return <Navigate to={`/category/${LEGACY_SLUGS[slug]}`} replace />;
+  }
+
+  const category = getCategoryBySlug(slug);
+  const images = category ? getCategoryImagePaths(category) : [];
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Category not found</h2>
-          <p className="text-gray-600">Please check the URL or go back to the home page.</p>
-        </div>
+      <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
+        <h2 className="font-display text-2xl font-bold text-slate-900">Category not found</h2>
+        <p className="mt-2 text-slate-600">This design category does not exist.</p>
+        <Link
+          to="/#categories"
+          className="mt-6 rounded-full bg-amber-500 px-6 py-2.5 font-semibold text-slate-900 transition hover:bg-amber-400"
+        >
+          Back to catalog
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <ImageGrid images={category.images} categoryName={category.name} />
+    <div className="min-h-screen bg-slate-50">
+      <ImageGrid images={images} categoryName={category.name} folder={category.folder} />
+      <Footer />
     </div>
   );
 };
